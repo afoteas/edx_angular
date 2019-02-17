@@ -13,26 +13,38 @@
         <h2>{{model.title}}</h2>
 
         <div>
-            <label><input type="radio" name="category" ng-click="changeMainDish('Cheese Pizza')"/> Cheese Pizza</label>
+            <label><input type="radio" name="category" ng-click="changeMainDish('Cheese Pizza','1\u20ac')"/> Cheese Pizza</label>
         </div>
         <div>
-            <label><input type="radio" name="category" ng-click="changeMainDish('Pepperoni Pizza')"/> Pepperoni Pizza</label>
+            <label><input type="radio" name="category" ng-click="changeMainDish('Pepperoni Pizza','2\u20ac')"/> Pepperoni Pizza</label>
         </div>
         <div>
-            <label><input type="radio" name="category" ng-click="changeMainDish('Margherita  Pizza')"/> Margherita Pizza</label>
+            <label><input type="radio" name="category" ng-click="changeMainDish('Margherita  Pizza','3\u20ac')"/> Margherita Pizza</label>
         </div>
         <div>
-            <label><input type="radio" name="category" ng-click="changeMainDish('BBQ Chicken Pizza')"/> BBQ Chicken Pizza</label>
+            <label><input type="radio" name="category" ng-click="changeMainDish('BBQ Chicken Pizza','4\u20ac')"/> BBQ Chicken Pizza</label>
         </div>
         <div>
-            <label><input type="radio" name="category" ng-click="changeMainDish('Combo Pizza')"/> Combo Pizza</label>
+            <label><input type="radio" name="category" ng-click="changeMainDish('Combo Pizza','5\u20ac')"/> Combo Pizza</label>
+        </div>
+
+        <div>
+            <h3>Selected Item</h3>
+            <pre>{{model.mainDish.name}}</pre>
+        </div>
+
+        <div>
+            <h3>Special Instuctions</h3>
+            <textarea class="form-control" ng-model="model.specialInstructions"></textarea>
+        </div>
+
+        <div>
+            <h3>Order Summary</h3>
+            <pre>{{model.mainDish.name}} {{model.mainDish.price}} - {{model.specialInstructions}}</pre>
         </div>
     </div>
 
-    <div>
-        <h3>Selected Item</h3>
-        <pre>{{model.mainDish}}</pre>
-    </div>
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
     <script src="./app/app.js"></script>
