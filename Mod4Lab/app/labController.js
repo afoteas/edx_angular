@@ -1,12 +1,41 @@
 app.controller('labController', [
-    '$scope', '$timeout', '$q',
-    function ($scope, $timeout, $q) {
+    '$scope', '$timeout', '$q', '$http', 'gitHub',
+    function ($scope, $timeout, $q, $http, gitHub) {
         $scope.model = {
             number: 0,
             result: 'Ready',
         };
 
         $scope.checkOddNumber = checkOddNumber;
+        $scope.getRepos = getRepos;
+        $scope.loadDetail = loadDetail;
+
+        // function getRepos() {
+        //     $http.get('https://api.github.com/orgs/angular/repos')
+        //         .then(function (valid_res) {
+        //             $scope.model.repos = valid_res.data;
+        //         }, function (error_res) {
+        //             $scope.model.repos = 'Error: ' + error_res.data.message;
+        //         });
+        // }
+        function getRepos() {
+            $scope.model.repos = gitHub.getAll();
+        }
+
+        // function loadDetail(name) {
+        //     var url = 'https://api.github.com/repos/angular/' + name;
+        //     $http.get(url)
+        //         .then(function (response) {
+        //             $scope.model.detail = response.data;
+        //         }, function (response) {
+        //             $scope.model.detail = { error: true, message: 'Error: ' + response.data.message };
+        //         });
+        // }
+
+        function loadDetail(name) {
+            $scope.model.detail = null;
+            $scope.model.detail = gitHub.getDetail({ id: name });
+        }
 
         function checkOddNumber(input) {
             $scope.model.result = 'Working...';
@@ -19,10 +48,7 @@ app.controller('labController', [
 
         function checkOddNumberHandler(input) {
             var defer = $q.defer();
-    
-            function isNumberOdd(input) {
-                return !isNaN(input) && input % 2 == 1;
-            }
+
             $timeout(function () {
                 if (isNumberOdd(input)) {
                     defer.resolve('Yes, an odd number');
@@ -30,7 +56,7 @@ app.controller('labController', [
                     defer.reject('Not an odd number');
                 }
             }, 1000);
-    
+
             return defer.promise;
         }
 
