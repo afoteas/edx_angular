@@ -12,6 +12,25 @@
         <h1>Tony's Pizza</h1>
 
         <h2>{{model.title}}</h2>
+        <h3>Topping Search</h3>
+        <input type="text" class="form-control" ng-model="model.search">
+        <div ng-show="model.search" ng-repeat="t in model.availableToppings | filter:model.search as filteredToppings">
+            <span ng-click="addTopping(t)">{{t}}</span>
+        </div>
+        <div class="alert alert-danger" ng-show="model.search.length > 0 && filteredToppings.length === 0" > No results. </div>
+        <div class="alert alert-success" ng-show="model.showAdded" > 
+        Topping added 
+        <input type="button" value="close" ng-click="model.showAdded = false" >   
+        </div>
+        
+        <div ng-hide="model.search">
+            Enter the search criteria above.
+        </div>
+        <h3>Selected Toppings</h3>
+        <div ng-repeat="t in model.toppings">
+            {{t}}
+        </div>
+
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
