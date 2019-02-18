@@ -13,5 +13,7 @@ app.controller('menuController', [
                 alert('You have selected the BBQ Chicken Pizza!');
             }
         });
+        
     }
 ]);
+

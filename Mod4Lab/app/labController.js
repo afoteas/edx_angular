@@ -18,8 +18,9 @@ app.controller('labController', [
         //             $scope.model.repos = 'Error: ' + error_res.data.message;
         //         });
         // }
-        function getRepos() {
-            $scope.model.repos = gitHub.getAll();
+        
+        function getRepos(search) {
+            $scope.model.repos = gitHub.getAll({org:search});
         }
 
         // function loadDetail(name) {
@@ -34,7 +35,7 @@ app.controller('labController', [
 
         function loadDetail(name) {
             $scope.model.detail = null;
-            $scope.model.detail = gitHub.getDetail({ id: name });
+            $scope.model.detail = gitHub.getDetail({ id: name,org:search });
         }
 
         function checkOddNumber(input) {
